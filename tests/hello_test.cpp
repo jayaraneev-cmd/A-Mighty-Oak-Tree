@@ -1,10 +1,16 @@
-#include <catch2/catch_test_macros.hpp>
-#include <catch2/benchmark/catch_benchmark.hpp>
-#include <catch2/benchmark/catch_constructor.hpp>
-#include <catch2/generators/catch_generators_range.hpp>
-
 #include "../src/hello.hpp"
+#include <cassert>
 
-TEST_CASE( "it returns Hello World" ) {
-    REQUIRE( hello() == "Hello World!" );
+int main() {
+    Squirrel s("Test");
+    Node n(&s);
+
+    assert(n.get_data()->get_name() == "Test");
+
+    Node left(nullptr);
+    n.set_left(&left);
+
+    assert(n.left() == &left);
+
+    return 0;
 }
